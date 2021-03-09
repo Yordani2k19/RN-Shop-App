@@ -18,5 +18,10 @@
   "devDependencies": {
     "@babel/core": "~7.9.0"
   },
-  "private": true
+  "private": false,
+  "name": "RN-Shop-App",
+  "version": "1.0.0",
+  "repository": "https://github.com/Yordani2k19/RN-Shop-App.git",
+  "author": "yordani2k19 <yordani@lit.technology>",
+  "license": "MIT"
 }
