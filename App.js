@@ -1,19 +1,36 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react'
+import { Text } from 'react-native'
+import AppLoading from 'expo-app-loading'
+import * as Font from 'expo-font'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello World!</Text>      
-    </View>
-  );
+import { View, SafeAreaView } from './components/core'
+import { MainHeader } from './components/common'
+
+const fetchFont = () => {
+  return Font.loadAsync({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+  })
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  const [dataLoaded, setDataLoaded] = useState(false)
+
+  if (!dataLoaded) {
+    return (
+      <AppLoading
+        startAsync={() => fetchFont()}
+        onFinish={() => setDataLoaded(true)}
+        onError={(err) => console.log('App Loading ERROR: ', err)}
+      />
+    )
+  }
+
+  return (
+    <SafeAreaView>
+      <View height="100%">
+        <MainHeader mainHeader="Hello Worldddd" />
+      </View>
+    </SafeAreaView>
+  )
+}
