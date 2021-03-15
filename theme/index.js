@@ -1,24 +1,20 @@
-const space = [2, 4, 6, 8, 10, 12, 16]
+const size = [14, 18, 22, 26, 32]
+const space = [15, 20, 25, 30, 40, 50, 70]
 
-export const theme = {    
-    space,
-    header: {
-        headerFontSize: 30,            
-    },
-
-    text: {
-        fontSize: 18
-    },
-
-    fonts: {
-        boldFont: 'open-sans-bold',
-        regularFont: 'open-sans',
-    },
-
-    colors: {
-        mainBackgroundColor: 'rgba(21, 42, 73, 1)',
-        main: "#2196F3",
-        error: "red",
-        warning: "yellow"
-    }
+export const theme = {
+  space,
+  size,
+  primaryColors: {
+    primary: '#ff6130',
+    accent: 'white',
+    shadedColor: '#808080',
+    error: 'red',
+    warning: 'yellow',
+  },
+  darkTheme: {
+    primary: 'black',
+    accent: 'blue',
+    error: 'red',
+    warning: 'yellow',
+  },
 }

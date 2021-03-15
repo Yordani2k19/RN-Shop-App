@@ -1,10 +1,23 @@
 import React, { useState } from 'react'
-import { Text } from 'react-native'
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font'
 
-import { View, SafeAreaView } from './components/core'
-import { MainHeader } from './components/common'
+import { theme } from './theme'
+import { ThemeProvider } from 'styled-components/native'
+
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+
+import { NavigationContainer } from '@react-navigation/native'
+import { StackNavigator } from './navigation/ShopNavigator'
+
+import productsReducer from './store/reducers/products'
+
+const rootReducer = combineReducers({
+  products: productsReducer,
+})
+
+const store = createStore(rootReducer)
 
 const fetchFont = () => {
   return Font.loadAsync({
@@ -25,12 +38,13 @@ export default function App() {
       />
     )
   }
-
   return (
-    <SafeAreaView>
-      <View height="100%">
-        <MainHeader mainHeader="Hello Worldddd" />
-      </View>
-    </SafeAreaView>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+          <StackNavigator />
+        </NavigationContainer>
+      </ThemeProvider>
+    </Provider>
   )
 }
