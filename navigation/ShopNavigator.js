@@ -19,6 +19,7 @@ export const StackNavigator = () => {
         },
         headerTintColor: theme.primaryColors.accent,
         headerTitleStyle: {
+          fontFamily: 'open-sans-bold',
           fontSize: Dimensions.get('screen').fontScale * 25,
         },
       }}

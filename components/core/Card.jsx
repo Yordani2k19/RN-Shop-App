@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 4,  
         width: '90%',
-        maxWidth: 300             
+        maxWidth: 350             
     },
 })

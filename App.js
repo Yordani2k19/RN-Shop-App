@@ -12,9 +12,11 @@ import { NavigationContainer } from '@react-navigation/native'
 import { StackNavigator } from './navigation/ShopNavigator'
 
 import productsReducer from './store/reducers/products'
+import cartReducers from './store/reducers/cart'
 
 const rootReducer = combineReducers({
   products: productsReducer,
+  cart: cartReducers,
 })
 
 const store = createStore(rootReducer)
