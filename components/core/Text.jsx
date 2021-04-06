@@ -5,8 +5,8 @@ import { color, space, typography, position } from 'styled-system'
 const StyledText = styled.Text`
   ${typography}
   ${space}
-    ${color}    
-    ${position}
+  ${color}    
+  ${position}
 `
 
 export const Text = ({ children, ...rest }) => {

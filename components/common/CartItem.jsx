@@ -8,7 +8,15 @@ import { View, Text, Card } from '../core'
 import { Ionicons } from '@expo/vector-icons'
 
 export const CartItem = (props) => {
-  const { itemId, title, price, quantity, handleDelete, onViewDetails } = props
+  const {
+    itemId,
+    title,
+    price,
+    quantity,
+    handleDelete,
+    onViewDetails,
+    deletable,
+  } = props
 
   return (
     <TouchableOpacity onPress={onViewDetails}>
@@ -48,13 +56,15 @@ export const CartItem = (props) => {
           >
             ${price.toFixed(2)}
           </Text>
-          <TouchableOpacity onPress={handleDelete}>
-            <Ionicons
-              name="ios-trash"
-              size={24}
-              color={theme.primaryColors.primary}
-            />
-          </TouchableOpacity>
+          {deletable && (
+            <TouchableOpacity onPress={handleDelete}>
+              <Ionicons
+                name="ios-trash"
+                size={24}
+                color={theme.primaryColors.primary}
+              />
+            </TouchableOpacity>
+          )}
         </View>
       </Card>
     </TouchableOpacity>

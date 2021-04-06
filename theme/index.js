@@ -8,6 +8,7 @@ export const theme = {
     primary: '#ff6130',
     accent: 'white',
     shadedColor: '#808080',
+    fakeOpacity: '#f6815c',
     error: 'red',
     warning: 'yellow',
   },

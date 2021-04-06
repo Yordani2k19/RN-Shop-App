@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { removeItemFromCart } from '../../store/actions/cart'
+import { addOrder } from '../../store/actions/orders'
 
 import { theme } from '../../theme'
 
@@ -46,9 +47,14 @@ export const CartScreen = (props) => {
     )
   }
 
+  const sendOrdersToOrdersScreen = () => {
+    dispatch(addOrder(cartItem, cartTotal))
+    props.navigation.navigate('Orders')
+  }
+
   return (
-    <SafeAreaView>
-      <View pt={theme.space[5]}>
+    <SafeAreaView flex={1}>
+      <View mt={theme.space[5]} flex={1}>
         <View justifyContent="center" alignItems="center">
           <Card style={{ padding: theme.space[1] }}>
             <View
@@ -66,13 +72,17 @@ export const CartScreen = (props) => {
               <View>
                 <Button
                   disabled={cartItem.length === 0 ? true : false}
-                  onPress={() => {}}
-                  bg={theme.primaryColors.primary}
+                  onPress={sendOrdersToOrdersScreen}
+                  bg={
+                    cartItem.length === 0
+                      ? theme.primaryColors.fakeOpacity
+                      : theme.primaryColors.primary
+                  }
                   p={Dimensions.get('screen').width / 80}
                 >
                   <Text
                     fontSize={theme.size[1]}
-                    color={cartItem.length === 0 ? '#d6d3d3' : 'white'}
+                    color="white"
                     fontFamily="open-sans-bold"
                   >
                     Order Now
@@ -83,8 +93,8 @@ export const CartScreen = (props) => {
           </Card>
         </View>
         <View
-          pt={theme.space[5]}
-          pl={Dimensions.get('screen').width / 20}
+          pt={5}
+          pl={Dimensions.get('screen').width / 12}
           justifyContent="center"
           alignItems="flex-start"
         >
@@ -96,30 +106,33 @@ export const CartScreen = (props) => {
             YOUR CART
           </Text>
         </View>
-        <FlatList
-          style={{
-            paddingTop: Dimensions.get('screen').height / 40,
-          }}
-          data={cartItem}
-          keyExtractor={(item) => item.itemId}
-          renderItem={(itemData) => (
-            <CartItem
-              itemId={itemData.item.itemId}
-              quantity={itemData.item.quantity}
-              title={itemData.item.itemTitle}
-              price={itemData.item.totalAmount}
-              nav={props.navigation}
-              onViewDetails={() =>
-                props.navigation.navigate('Details', {
-                  itemId: itemData.item.itemId,
-                })
-              }
-              handleDelete={() =>
-                dispatch(removeItemFromCart(itemData.item.itemId))
-              }
-            />
-          )}
-        />
+        <View flex={1}>
+          <FlatList
+            contentContainerStyle={{
+              padding: Dimensions.get('screen').height / 40,
+            }}
+            data={cartItem}
+            keyExtractor={(item) => item.itemId}
+            renderItem={(itemData) => (
+              <CartItem
+                itemId={itemData.item.itemId}
+                quantity={itemData.item.quantity}
+                title={itemData.item.itemTitle}
+                price={itemData.item.totalAmount}
+                nav={props.navigation}
+                onViewDetails={() =>
+                  props.navigation.navigate('Details', {
+                    itemId: itemData.item.itemId,
+                  })
+                }
+                deletable
+                handleDelete={() =>
+                  dispatch(removeItemFromCart(itemData.item.itemId))
+                }
+              />
+            )}
+          />
+        </View>
       </View>
     </SafeAreaView>
   )

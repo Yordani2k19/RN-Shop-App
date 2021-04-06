@@ -20,7 +20,11 @@ export const ProductOverviewScreen = (props) => {
     const { id, title, imageUrl, price, description } = itemData.item
 
     return (
-      <View mb={theme.space[3]} alignItems="center" justifyContent="center">
+      <View
+        paddingBottom={theme.space[1]}
+        alignItems="center"
+        justifyContent="center"
+      >
         <ProductItem
           id={id}
           title={title}
@@ -47,13 +51,24 @@ export const ProductOverviewScreen = (props) => {
           <Ionicons name="ios-cart" size={24} color="white" />
         </TouchableOpacity>
       ),
+      headerLeft: () => (
+        <TouchableOpacity
+          style={{ marginLeft: Dimensions.get('screen').height / 18 }}
+          onPress={() => props.navigation.navigate('Orders')}
+        >
+          <Ionicons name="reorder-four" size={24} color="white" />
+        </TouchableOpacity>
+      ),
     })
   }, [props.navigation.navigate])
 
   return (
     <SafeAreaView>
       <FlatList
-        style={{ paddingTop: theme.space[5], height: '100%' }}
+        contentContainerStyle={{
+          paddingBottom: Dimensions.get('screen').height / 40,
+          paddingTop: Dimensions.get('screen').height / 10,
+        }}
         data={PRODUCTS}
         renderItem={renderItem}
       />
