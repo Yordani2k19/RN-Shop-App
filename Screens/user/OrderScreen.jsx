@@ -1,7 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { FlatList, Dimensions } from 'react-native'
+import uuid from 'react-native-uuid'
+
+import { FlatList, Dimensions, TouchableOpacity } from 'react-native'
 import { View, Text, Card } from '../../components/core'
 import { OrderItem } from '../../components/common'
 
@@ -18,7 +20,7 @@ export const OrderScreen = (props) => {
         pt={Dimensions.get('screen').height / 20}
         mt="50%"
       >
-        <Card style={{ padding: Dimensions.get('screen').width / 50 }}>
+        <Card style={{ padding: Dimensions.get('screen').width / 10 }}>
           <Text textAlign="center" fontSize={theme.size[1]}>
             You have no{' '}
             <Text
@@ -37,7 +39,7 @@ export const OrderScreen = (props) => {
     <View pt={Dimensions.get('screen').height / 20}>
       <FlatList
         data={order}
-        keyExtractor={(item) => item.id}
+        keyExtractor={() => uuid.v4()}
         renderItem={(itemData) => (
           <OrderItem
             items={itemData.item.items}

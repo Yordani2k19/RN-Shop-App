@@ -9,7 +9,11 @@ import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 
 import { NavigationContainer } from '@react-navigation/native'
-import { StackNavigator } from './navigation/ShopNavigator'
+import {
+  StackNavigator,
+  ShopNavigator,
+  MainNavigator,
+} from './navigation/ShopNavigator'
 
 import productsReducer from './store/reducers/products'
 import cartReducers from './store/reducers/cart'
@@ -46,7 +50,7 @@ export default function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <StackNavigator />
+          <MainNavigator />
         </NavigationContainer>
       </ThemeProvider>
     </Provider>

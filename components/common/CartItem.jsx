@@ -54,7 +54,7 @@ export const CartItem = (props) => {
             color={theme.primaryColors.shadedColor}
             pr={Dimensions.get('screen').height / 30}
           >
-            ${price.toFixed(2)}
+            ${Math.round(price.toFixed(2) * 100) / 100}
           </Text>
           {deletable && (
             <TouchableOpacity onPress={handleDelete}>

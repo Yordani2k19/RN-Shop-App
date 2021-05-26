@@ -7,6 +7,7 @@ const StyledButton = styled.TouchableOpacity`
   ${space}
   ${color}
   ${position}
+  width: auto;
 `
 
 export const Button = ({ children, ...rest }) => {

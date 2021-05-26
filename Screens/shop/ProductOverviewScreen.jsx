@@ -6,7 +6,7 @@ import * as cartActions from '../../store/actions/cart'
 import { theme } from '../../theme'
 
 import { FlatList, TouchableOpacity, View, Dimensions } from 'react-native'
-import { SafeAreaView } from '../../components/core'
+import { SafeAreaView, Button, Text } from '../../components/core'
 import { ProductItem } from '../../components/common'
 
 import { Ionicons } from '@expo/vector-icons'
@@ -32,11 +32,35 @@ export const ProductOverviewScreen = (props) => {
           price={price}
           description={description}
           nav={props.navigation}
-          onViewDetails={() =>
-            props.navigation.navigate('Details', { itemId: id })
-          }
-          onAddToCart={() => dispatch(cartActions.addItemToCart(itemData.item))}
-        />
+          onSelect={() => props.navigation.navigate('Details', { itemId: id })}
+        >
+          <Button
+            onPress={() => props.navigation.navigate('Details', { itemId: id })}
+            bg={theme.primaryColors.primary}
+            p={Dimensions.get('screen').width / 80}
+          >
+            <Text
+              fontFamily="open-sans"
+              color={theme.primaryColors.accent}
+              fontSize={theme.size[1]}
+            >
+              View Details
+            </Text>
+          </Button>
+          <Button
+            onPress={() => dispatch(cartActions.addItemToCart(itemData.item))}
+            bg={theme.primaryColors.primary}
+            p={Dimensions.get('screen').width / 80}
+          >
+            <Text
+              fontFamily="open-sans"
+              color={theme.primaryColors.accent}
+              fontSize={theme.size[1]}
+            >
+              Add To Cart
+            </Text>
+          </Button>
+        </ProductItem>
       </View>
     )
   }
@@ -49,14 +73,6 @@ export const ProductOverviewScreen = (props) => {
           onPress={() => props.navigation.navigate('Cart')}
         >
           <Ionicons name="ios-cart" size={24} color="white" />
-        </TouchableOpacity>
-      ),
-      headerLeft: () => (
-        <TouchableOpacity
-          style={{ marginLeft: Dimensions.get('screen').height / 18 }}
-          onPress={() => props.navigation.navigate('Orders')}
-        >
-          <Ionicons name="reorder-four" size={24} color="white" />
         </TouchableOpacity>
       ),
     })

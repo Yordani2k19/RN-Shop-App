@@ -3,19 +3,19 @@ import React from 'react'
 import { theme } from '../../theme'
 
 import { Image, Dimensions, TouchableOpacity } from 'react-native'
-import { View, Text, Card, Button } from '../core'
+import { View, Text, Card } from '../core'
 
 export const ProductItem = (props) => {
-  const { title, imageUrl, price, onViewDetails, onAddToCart } = props
+  const { title, imageUrl, price, onSelect } = props
 
   return (
-    <TouchableOpacity onPress={onViewDetails}>
+    <TouchableOpacity onPress={onSelect}>
       <Card
         style={{
           justifyContent: 'center',
           alignItems: 'center',
           width: '100%',
-          marginBottom: 40,
+          marginBottom: 20,
         }}
       >
         <View
@@ -25,7 +25,7 @@ export const ProductItem = (props) => {
           paddingTop={theme.size[4]}
         >
           <Image
-            source={{ uri: imageUrl }}
+            source={imageUrl ? { uri: imageUrl } : null}
             style={{ flex: 1, borderRadius: 4, overflow: 'hidden' }}
           />
         </View>
@@ -44,7 +44,7 @@ export const ProductItem = (props) => {
             fontFamily="open-sans"
             fontSize={theme.size[2]}
           >
-            ${price.toFixed(2)}
+            ${price}
           </Text>
         </View>
         <View
@@ -53,34 +53,9 @@ export const ProductItem = (props) => {
           justifyContent="space-evenly"
           alignItems="center"
           flexWrap="wrap"
-          py={theme.size[4]}
+          py={theme.size[2]}
         >
-          <Button
-            onPress={onViewDetails}
-            bg={theme.primaryColors.primary}
-            p={Dimensions.get('screen').width / 80}
-          >
-            <Text
-              fontFamily="open-sans"
-              color={theme.primaryColors.accent}
-              fontSize={theme.size[1]}
-            >
-              View Details
-            </Text>
-          </Button>
-          <Button
-            onPress={onAddToCart}
-            bg={theme.primaryColors.primary}
-            p={Dimensions.get('screen').width / 80}
-          >
-            <Text
-              fontFamily="open-sans"
-              color={theme.primaryColors.accent}
-              fontSize={theme.size[1]}
-            >
-              Add To Cart
-            </Text>
-          </Button>
+          {props.children}
         </View>
       </Card>
     </TouchableOpacity>

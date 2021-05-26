@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Dimensions } from 'react-native'
 import { View, Text, Card, Button } from '../core'
-import { ShowDetails } from '../common'
+import { ShowDetails } from './ShowDetails'
 
 import { theme } from '../../theme'
 

@@ -50,7 +50,7 @@ export const ShowDetails = (props) => {
             bg="green"
           >
             <Text fontSize={16} color="white">
-              ${totalAmount}
+              ${totalAmount.toFixed(2)}
             </Text>
           </View>
         </View>
